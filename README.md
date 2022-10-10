@@ -40,3 +40,7 @@ then this result goes to the DOM
 
 then here happens the reconciliation algorithm of react
 
+# primitive vs reference values and how to update objects immutably
+
+https://academind.com/tutorials/reference-vs-primitive-values
+
