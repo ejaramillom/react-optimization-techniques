@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import './App.css';
 import Button from './components/UI/Button/Button';
@@ -9,9 +9,9 @@ function App() {
 
   console.log('APP RUNNING');
 
-  const toggleParagraphHandler = () => {
+  const toggleParagraphHandler = useCallback(() => {
     setShowParagraph(prevShowParagraph => !prevShowParagraph)
-  };
+  }, []);
 
   // the fact that state changes, makes the function component to re run and then
   // it makes the DOM to gain a new paragraph node
