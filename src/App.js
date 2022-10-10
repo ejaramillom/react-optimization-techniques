@@ -6,11 +6,29 @@ import DemoOutput from './components/Demo/DemoOutput';
 
 function App() {
   const [showParagraph, setShowParagraph] = useState(false);
+  const [allowToggle, setAllowToggle] = useState(false);
 
   console.log('APP RUNNING');
 
   const toggleParagraphHandler = useCallback(() => {
-    setShowParagraph(prevShowParagraph => !prevShowParagraph)
+    if (allowToggle) {
+      setShowParagraph(prevShowParagraph => !prevShowParagraph)
+    }
+  }, [allowToggle]);
+
+  // const toggleParagraphHandler = useCallback(() => {
+  //   if (allowToggle) {
+  //     setShowParagraph(prevShowParagraph => !prevShowParagraph)
+  //   }
+  // }, []);
+
+  // if we use the handler with allowToggle like this, not adding it to the dependencies
+  // then the value of allowToggle would never change because functions in javascript 
+  // are closures, which means that the function is saved in javascript memory
+  // with the previous allowToggle value
+
+  const allowToggleHandler = useCallback(() => {
+    setAllowToggle(true);
   }, []);
 
   // the fact that state changes, makes the function component to re run and then
@@ -19,8 +37,9 @@ function App() {
   return (
     <div className="app">
       <h1>Hi there!</h1>
-      <DemoOutput show={false} />
-      <Button onClick={toggleParagraphHandler}>Show paragraph</Button>
+      <DemoOutput show={showParagraph} />
+      <Button onClick={toggleParagraphHandler}>Toggle paragraph</Button>
+      <Button onClick={allowToggleHandler}>Allow toggle</Button>
     </div>
   );
 }
