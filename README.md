@@ -44,3 +44,7 @@ then here happens the reconciliation algorithm of react
 
 https://academind.com/tutorials/reference-vs-primitive-values
 
+# state scheduling and batching
+
+read how react schedules state changes and when does it batch functions to update state simultaneously
+
